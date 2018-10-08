@@ -98,19 +98,24 @@ public class Main extends JFrame {
 				public void actionPerformed(ActionEvent e) {
 					// TODO Auto-generated method stub
 					
+					//If plus button is pressed we will save first number and clean the text field
 					if(button.getText().equals("+")) {
 						
 						num1 = Integer.valueOf(myTF.getText());
-						System.out.println(num1);
+						
 						myTF.setText("");
-
+					
+					//if equal sign then count 2 numbers
 					}else if(button.getText().equals("=")) {
+						
 						num2 = Integer.valueOf(myTF.getText());
-						System.out.println(num2);
+						
 						myTF.setText("");
+						
 						sum = num1 + num2;
-						System.out.println(sum);
 						myTF.setText(String.valueOf(sum));
+						
+					//If nothing of them are pressed just continue working 
 					}else{
 						myTF.setText(myTF.getText()+button.getText());
 						
