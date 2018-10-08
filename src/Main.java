@@ -11,10 +11,14 @@ import javax.swing.*;
 
 public class Main extends JFrame {
 	
-	int sum;
-	int num1;
-	int num2;
 	
+	double sum;
+	double num1;
+	double num2;
+	boolean plus = false;
+	boolean minus = false;
+	boolean mult = false;
+	boolean div = false;
 	
 	
 	
@@ -22,6 +26,8 @@ public class Main extends JFrame {
 		// TODO Auto-generated method stub
 			new Main();
 	}
+	
+	
 	
 	public Main() {
 		//setting of the window
@@ -101,20 +107,117 @@ public class Main extends JFrame {
 					//If plus button is pressed we will save first number and clean the text field
 					if(button.getText().equals("+")) {
 						
-						num1 = Integer.valueOf(myTF.getText());
+						num1 = Double.valueOf(myTF.getText());
+						
+						plus = true; 	//Make sure that boolean are right the same will do when its minus
+						minus = false;
+						mult = false;
+						div = false;
 						
 						myTF.setText("");
-					
-					//if equal sign then count 2 numbers
-					}else if(button.getText().equals("=")) {
+					}
+					//If minus button is pressed do this part 
+					else if(button.getText().equals("-")) {
+							
+						num1 = Double.valueOf(myTF.getText());
 						
-						num2 = Integer.valueOf(myTF.getText());
+						minus = true;  
+						plus = false;
+						mult = false;
+						div = false;
+							
+						myTF.setText("");
+					
+					//The same function for multiplication
+					}else if(button.getText().equals("*")) {
+							
+						num1 = Double.valueOf(myTF.getText());
+							
+						minus = false;  
+						plus = false;
+						mult = true;
+						div = false;
+								
+						myTF.setText("");
+							
+					
+					
+					}else if(button.getText().equals("÷")) {
+						
+						num1 = Double.valueOf(myTF.getText());
+							
+						minus = false;  
+						plus = false;
+						mult = false;
+						div = true;
+								
+						myTF.setText("");
+							
+						
+					//if equal sign and plus sign was pressed then plus 2 numbers and show the result
+					}else if(button.getText().equals("=") && plus == true ) {
+						
+						num2 = Double.valueOf(myTF.getText());
 						
 						myTF.setText("");
 						
 						sum = num1 + num2;
 						myTF.setText(String.valueOf(sum));
+						num1 = sum;
+					
+					//if equal sign and minus sign was pressed then minus  numbers and show the result
+					}else if(button.getText().equals("=") && minus == true) {
 						
+						num2 = Double.valueOf(myTF.getText());
+						
+						myTF.setText("");
+						
+						sum = num1 - num2;
+						myTF.setText(String.valueOf(sum));
+						num1 = sum;
+					
+					//if equal sign and multiplication sign was pressed then multiply 2 numbers and show the result	
+					}else if(button.getText().equals("=") && mult == true ) {
+						
+						num2 = Double.valueOf(myTF.getText());
+						
+						myTF.setText("");
+						
+						sum = num1 * num2;
+						myTF.setText(String.valueOf(sum));
+						num1 = sum;
+					
+					//if equal sign and division sign was pressed then divide numbers and show the result
+					}else if(button.getText().equals("=") && div == true ) {
+						
+						num2 = Double.valueOf(myTF.getText());
+						
+						myTF.setText("");
+						
+						sum = num1 / num2;
+						myTF.setText(String.valueOf(sum));
+						num1 = sum;
+					
+					//Cleaning all variables and the text field if 'C' or 'CE' are pressed
+					}else if(button.getText().equals("C") || button.getText().equals("CE")) {
+						
+						num1 = 0;
+						num2 = 0;
+						minus = false;  
+						plus = false;
+						mult = false;
+						div = false;
+						
+						
+						myTF.setText("");
+					
+					// if sign '<=' is pressed then remove last character from the text field
+					}else if(button.getText().equals("<=")) {
+						
+					myTF.setText(myTF.getText().substring(0, myTF.getText().length() - 1));	
+						
+						
+					
 					//If nothing of them are pressed just continue working 
 					}else{
 						myTF.setText(myTF.getText()+button.getText());
